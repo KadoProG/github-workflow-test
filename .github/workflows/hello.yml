@@ -1,0 +1,28 @@
+# 1. Workflowの名前（Actionsタブで表示されます）
+name: 初めての自動化テスト
+
+# 2. Event（いつ動かすか）
+# 今回は「mainブランチにpushされた時」
+on:
+  push:
+    branches:
+      - main
+
+# 3. Job（どこで動かすか）
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest # 最新のUbuntu（Linux）パソコンを借りるという意味
+
+    # 4. Step（何をするか）
+    steps:
+      # Step 1: 単純に文字を表示する
+      - name: 挨拶をプリントする
+        run: echo "こんにちは！GitHub Actionsの世界へようこそ！"
+
+      # Step 2: 複数行のコマンドも書けます
+      - name: 実行環境の確認
+        run: |
+          echo "ここはどこ？"
+          pwd
+          echo "ファイルはある？"
+          ls -la
