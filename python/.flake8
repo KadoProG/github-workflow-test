@@ -1,0 +1,7 @@
+[flake8]
+# 仮想環境内の site-packages まで走査するとサードパーティ由来の E501 等が大量に出る
+exclude =
+    venv,
+    .venv,
+    __pycache__,
+    .git
