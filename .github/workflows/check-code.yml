@@ -1,0 +1,24 @@
+name: コードチェック
+
+on: [push] # ブランチ指定なしなら、どのブランチにpushしても動きます
+
+jobs:
+  check-code:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 借りたパソコンに、自分のリポジトリのコードをダウンロード（チェックアウト）する
+      # uses: 〇〇 というのが、「他人が作った便利な部品を使う」合図です。
+      - name: コードをチェックアウト
+        uses: actions/checkout@v4
+
+      # 2. Pythonが動く環境を作る（Pythonの場合の例）
+      - name: Pythonのセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # 3. 自分でコマンドを叩いてチェックツールを動かす
+      - name: Linter（コード整形チェック）を実行
+        run: |
+          pip install flake8
+          flake8 .
